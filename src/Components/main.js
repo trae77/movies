@@ -11,9 +11,14 @@ const Main = () => {
                     <li><a href="/about">About</a></li>
                 </ul>
             </nav>
+
+            <form>
+            <input type="text" placeholder="Search" />
+            <button type="submit"><i class="fa-solid fa-magnifying-glass fa-shake"></i></button>
+            </form>
         </div>
 
-        
+
      
     )
 }
