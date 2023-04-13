@@ -23,14 +23,18 @@ const Main = () => {
         <form className="search-btn">
           <input type="text" placeholder="Input movie name" />
           <button type="submit">
-            <i class="fa-solid fa-magnifying-glass fa-shake"></i>
+            <i className="fa-solid fa-magnifying-glass fa-shake"></i>
           </button>
         </form>
+     
       </div>
 
-      <div>
-        <Card />
+     <div className="card-container">
+
+      <Card />
       </div>
+      
+    
     </>
   );
 };
