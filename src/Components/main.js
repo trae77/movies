@@ -1,36 +1,16 @@
 import React from "react";
 import "./style.css";
 import Card from "./Card";
+import Nav from "./Nav";
 
 const Main = () => {
   return (
     <>
-      <div className="nav">
-        <nav>
-          <ul>
-            <li>
-              <a href="/">Home</a>
-            </li>
-            <li>
-              <a href="/movies">Movies</a>
-            </li>
-            <li>
-              <a href="/about">About</a>
-            </li>
-          </ul>
-        </nav>
-
-        <form className="search-btn">
-          <input type="text" placeholder="Input movie name" />
-          <button type="submit">
-            <i className="fa-solid fa-magnifying-glass fa-shake"></i>
-          </button>
-        </form>
-     
-      </div>
+      <Nav />
 
      <div className="card-container">
-
+     <Card />
+      <Card />
       <Card />
       </div>
       
