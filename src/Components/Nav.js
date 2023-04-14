@@ -16,12 +16,18 @@ const Nav = () => {
             <li>
               <a href="/about">About</a>
             </li>
+            <li>
+              <a href="/">family</a>
+            </li>
+            <li>
+              <a href="/">comedy</a>
+            </li>
           </ul>
         </nav>
 
-        <form className="search-btn">
-          <input type="text" placeholder="Input movie name" />
-          <button type="submit">
+        <form >
+          <input className="search-btn" type="text" placeholder="Input movie name" />
+          <button  className="search" type="submit">
             <i className="fa-solid fa-magnifying-glass fa-shake"></i>
           </button>
         </form>
