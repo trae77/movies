@@ -1,8 +1,6 @@
 import React from "react";
 import "./style.css";
 
-const api_key = "b604796e41f8ebf14ff8be62a4319577";
-const base_url = "https://api.themoviedb.org/3";
 const Card = () => {
   return (
     <>
