@@ -1,7 +1,8 @@
 import React from "react";
 import "./style.css";
 
-const Card = () => {
+const Card = (movie) => {
+  console.log(movie.info);
   return (
     <>
     <div className="card-container">
