@@ -1,14 +1,13 @@
 import React from "react";
-import {useState} from "react";
-import {useEffect} from "react";
+import { useState } from "react";
+import { useEffect } from "react";
 import "./style.css";
 import Card from "./Card";
-import Nav from "./Nav";
 
 let api_key = "b604796e41f8ebf14ff8be62a4319577";
 let base_url = "https://api.themoviedb.org/3";
 let url = `${base_url}/discover/movie?sort_by=popularity.desc&api_key=${api_key}`;
-
+let arr = ["Home", "Movies", "About", "Family", "Comedy"];
 const Main = () => {
   const [movies, setMovies] = useState([]);
   const [search, setSearch] = useState([url]);
@@ -21,32 +20,58 @@ const Main = () => {
         setMovies(data.results);
       });
   }, [search]);
-
-
+  const getData = (name) => {
+    if (name === "Home") {
+      setSearch(url);
+    } else {
+      let search_url = `${base_url}/search/movie?api_key=${api_key}&query=${name}`;
+      setSearch(search_url);
+    }
+  };
+  
 
   return (
     <>
-      <Nav />
+      <div className="nav">
+        <nav>
+          <ul>
+            {arr.map((res, pos) => {
+              return (
+                <li key={pos}>
+                  <a
+                    href="/"
+                    onClick={(e) => {
+                      getData(e.target.name);
+                    }}
+                  >
+                    {res}
+                  </a>
+                </li>
+              );
+            })}
+          </ul>
+        </nav>
+
+        <form>
+          <input
+            className="search-btn"
+            type="text"
+            placeholder="Input movie name"
+          />
+          <button className="search" type="submit">
+            <i className="fa-solid fa-magnifying-glass fa-shake"></i>
+          </button>
+        </form>
+      </div>
 
       <div className="card-container">
-        {
-          movies.map((movie) => {
-            return (
-              <Card
-                key={movie.id}
-                id={movie.id}
-                title={movie.title}
-                poster={movie.poster_path}
-                overview={movie.overview}
-                rating={movie.vote_average}
-                release={movie.release_date}
-                genre={movie.genre_ids}
-                duration={movie.runtime}
-              />
-            );
-          }
-          )
-        }
+        {movies.length === 0 ? (
+          <h1>No Movies Found</h1>
+        ) : (
+          movies.map((res, pos) => {
+            return <Card key={pos} info={res} />;
+          })
+        )}
       </div>
     </>
   );
