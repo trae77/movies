@@ -10,7 +10,7 @@ let base_url = "https://api.themoviedb.org/3";
 let url = `${base_url}/discover/movie?sort_by=popularity.desc&api_key=${api_key}`;
 
 const Main = () => {
-  // const [movies, setMovies] = useState([]);
+  const [movies, setMovies] = useState([]);
   const [search, setSearch] = useState([url]);
 
   useEffect(() => {
@@ -18,7 +18,7 @@ const Main = () => {
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
-        setSearch(data.results);
+        setMovies(data.results);
       });
   }, [search]);
 
@@ -29,18 +29,24 @@ const Main = () => {
       <Nav />
 
       <div className="card-container">
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
+        {
+          movies.map((movie) => {
+            return (
+              <Card
+                key={movie.id}
+                id={movie.id}
+                title={movie.title}
+                poster={movie.poster_path}
+                overview={movie.overview}
+                rating={movie.vote_average}
+                release={movie.release_date}
+                genre={movie.genre_ids}
+                duration={movie.runtime}
+              />
+            );
+          }
+          )
+        }
       </div>
     </>
   );
