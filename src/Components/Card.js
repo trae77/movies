@@ -3,7 +3,7 @@ import "./style.css";
 
 const Card = (movie) => {
   let image = "https://image.tmdb.org/t/p/w500";
-  console.log(movie.info);
+  // console.log(movie.info);
   return (
     <>
     <div className="card-container">
