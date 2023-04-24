@@ -7,28 +7,42 @@ import Card from "./Card";
 let api_key = "b604796e41f8ebf14ff8be62a4319577";
 let base_url = "https://api.themoviedb.org/3";
 let url = `${base_url}/discover/movie?sort_by=popularity.desc&api_key=${api_key}`;
-let arr = ["Home", "Movies", "About", "Family", "Comedy"];
+let arr = ["Popular", "Action", "Horror", "Family", "Comedy"];
 const Main = () => {
   const [movies, setMovies] = useState([]);
-  const [search, setSearch] = useState([url]);
+  const [url_search, setUrl] = useState([url]);
 
+  
   useEffect(() => {
-    fetch(search)
+    fetch(url_search)
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
         setMovies(data.results);
       });
-  }, [search]);
-  const getData = (name) => {
-    if (name === "Home") {
-      setSearch(url);
-    } else {
-      let search_url = `${base_url}/search/movie?api_key=${api_key}&query=${name}`;
-      setSearch(search_url);
+  }, [url_search]);
+ 
+  const getData = (type) => {
+    console.log(type);
+    if (type === "Popular") {
+      console.log("hit popular");
+      url = `${base_url}/discover/movie?sort_by=popularity.desc&api_key=${api_key}`;
+      console.log(url);
     }
+    if (type === "Action") {
+      url = `${base_url}/discover/movie?with_genres=28&api_key=${api_key}`;
+      console.log(url);
+    }
+    if (type === "Horror") {
+      url = `${base_url}/discover/movie?with_genres=27&api_key=${api_key}`;
+    }
+    if (type === "Family") {
+      url = `${base_url}/discover/movie?with_genres=10751&api_key=${api_key}`;
+    }
+    if (type === "Comedy") {
+      url = `${base_url}/discover/movie?with_genres=35&api_key=${api_key}`;
+    }
+    setUrl(url);
   };
-  
 
   return (
     <>
@@ -39,7 +53,8 @@ const Main = () => {
               return (
                 <li key={pos}>
                   <a
-                    href="/"
+                    href="#"
+                    name={res}
                     onClick={(e) => {
                       getData(e.target.name);
                     }}
