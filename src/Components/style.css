@@ -23,7 +23,7 @@ body {
 }
 nav ul {
   display: flex;
-  background-color: rgb(247, 248, 248);
+  background-color: var(--primary-color);
   justify-content: space-around;
   align-items: center;
   margin: 5px;
@@ -74,4 +74,14 @@ p {
 .pic {
   width: 100%;
   height: 250px;
+}
+h2 {
+  color: white;
+  font-size: 30px;
+  text-align: center;
+}
+p{
+  color: white;
+  font-size: 20px;
+  text-align: center;
 }
