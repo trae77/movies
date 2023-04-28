@@ -11,8 +11,8 @@ let arr = ["Popular", "Action", "Horror", "Family", "Comedy"];
 const Main = () => {
   const [movies, setMovies] = useState([]);
   const [url_search, setUrl] = useState([url]);
+  const [search, setSearch] = useState("");
 
-  
   useEffect(() => {
     fetch(url_search)
       .then((res) => res.json())
@@ -20,7 +20,14 @@ const Main = () => {
         setMovies(data.results);
       });
   }, [url_search]);
- 
+
+  const searchMovie = (e) => {
+    console.log(search);
+    url = `${base_url}/search/movie?api_key=${api_key}&query=${search}`;
+    setUrl(url);
+    setSearch("");
+  };
+
   const getData = (type) => {
     console.log(type);
     if (type === "Popular") {
@@ -72,9 +79,16 @@ const Main = () => {
             className="search-btn"
             type="text"
             placeholder="Input movie name"
+            onChange={(e) => {
+              setSearch(e.target.value);
+            }}
+            value={search}
           />
           <button className="search" type="submit">
-            <i className="fa-solid fa-magnifying-glass fa-shake"></i>
+            <i
+              className="fa-solid fa-magnifying-glass fa-shake"
+              onClick={searchMovie}
+            ></i>
           </button>
         </form>
       </div>
